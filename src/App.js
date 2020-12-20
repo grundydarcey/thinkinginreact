@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import './App.css';
-import Main from './Main';
-import Display from './Display';
+import ChooseForm from './ChooseForm';
+import Header from './Header'
+import Cart from './Cart'
 
 export default class App extends Component {
-  constructor(props) {
-    super(props)
-  this.state = {
+  state = {
     selected: {
       Processor: {
         name: '17th Generation Intel Core HB (7 Core with donut spare)',
@@ -26,22 +24,30 @@ export default class App extends Component {
         cost: 1500
       }
     }
-  }
-}
-
-
-doThis() {
-  console.log(this.state)
-}
-
+  };
+  updateFeature = (feature, newValue) => {
+    const selected = Object.assign({}, this.state.selected);
+    selected[feature] = newValue;
+    this.setState({
+      selected
+    });
+  };
   render() {
     return (
-      <main className='App'>
-        <Header></Header><button onClick={() => this.doThis()}>Click this</button>
-        <Main>
-        </Main>
-        <Display FEATURES={this.props.FEATURES} />
-      </main>
+      <div> 
+        <Header/>
+        <div className="App">
+            <main className="holder">
+        <ChooseForm
+          selected ={this.state.selected}
+          handleUpdate={(feature, newValue)=>this.updateFeature(feature, newValue)}
+        />
+        <Cart
+         selected = {this.state.selected}
+       />
+        </main>
+      </div>
+      </div>
     )
   }
 }
