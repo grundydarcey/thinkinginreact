@@ -27,17 +27,17 @@ export default class App extends Component {
       }
     }
   }
-  this.doThis = this.doThis.bind(this);
 }
 
+
 doThis() {
-  console.log('did it')
-};
+  console.log(this.state)
+}
 
   render() {
     return (
       <main className='App'>
-        <Header></Header>
+        <Header></Header><button onClick={() => this.doThis()}>Click this</button>
         <Main>
         </Main>
         <Display FEATURES={this.props.FEATURES} />

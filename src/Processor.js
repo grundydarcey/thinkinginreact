@@ -40,4 +40,8 @@ export default class Processor extends Component {
         </fieldset>
       );
     });
+    return (
+      {features}
+    )
   }
+}
